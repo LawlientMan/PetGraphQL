@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  mongodbclient:
+    image: mongoclient/mongoclient
+    container_name: mongodbclient
+    depends_on:
+        - productdb
+    ports:
+      - '3000:3000'
