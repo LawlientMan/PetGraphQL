@@ -5,6 +5,5 @@ namespace Product.Application.Repositories
 {
     public interface ISkuRepository : IBaseRepository<SKU>
     {
-        Task<SKU> InsertAsync(string optionId, SKU sku);
     }
 }

@@ -5,6 +5,5 @@ namespace Product.Application.Repositories
 {
     public interface IStyleRepository : IBaseRepository<Style>
     {
-        Task<Style> InsertAsync(Style entity);
     }
 }

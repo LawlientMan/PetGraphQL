@@ -10,7 +10,6 @@ namespace Product.Domain.Entities
         public string Gender { get; set; }
         public string Description { get; set; }
         public string PdpUrl { get; set; }
-        public ICollection<SKU> Skus { get; set; }
         public ICollection<string> CalculatedBulletPoints { get; set; }
     }   
 }
