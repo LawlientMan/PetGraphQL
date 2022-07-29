@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Product.API.Loaders;
 using Product.API.Queries;
 using Product.API.Resolvers;
 using Product.API.Types;
 using Product.Application;
 using Product.Infrastructure;
-using System.Reflection;
 
 namespace Product.API
 {
@@ -37,7 +37,8 @@ namespace Product.API
                 .AddResolver<SkuResolver>()
                 .AddQueryType(q => q.Name("Query"))
                     .AddType<StyleQueryType>()
-                .AddInMemorySubscriptions();
+                .AddInMemorySubscriptions()
+                .AddDataLoader<SkuBatchDataLoader>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

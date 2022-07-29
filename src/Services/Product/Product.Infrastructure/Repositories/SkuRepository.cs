@@ -20,5 +20,12 @@ namespace Product.Infrastructure.Repositories
 
             return await collection.Find(filter).ToListAsync();
         }
+
+        public async Task<IEnumerable<SKU>> GetBatchByOptionIdsAsync(IEnumerable<Guid> optionIds)
+        {
+            FilterDefinition<SKU> filter = Builders<SKU>.Filter.AnyIn(nameof(SKU.OptionId), optionIds);
+
+            return await collection.Find(filter).ToListAsync();
+        }
     }
 }

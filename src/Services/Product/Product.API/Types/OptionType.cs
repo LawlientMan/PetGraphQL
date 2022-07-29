@@ -9,7 +9,7 @@ namespace Product.API.Types
         protected override void Configure(IObjectTypeDescriptor<Option> descriptor)
         {
             descriptor.BindFieldsImplicitly();
-            descriptor.Field<SkuResolver>(_ => _.GetSkusAsync(default, default));
+            descriptor.Field<SkuResolver>(_ => _.GetSkusAsync(default, default, default));
         }
     }
 }

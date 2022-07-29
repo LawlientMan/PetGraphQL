@@ -8,5 +8,7 @@ namespace Product.Application.Contracts.Persistence
     public interface ISkuRepository : IBaseRepository<SKU>
     {
         Task<IEnumerable<SKU>> GetAllByOptionIdAsync(Guid optionId);
+
+        Task<IEnumerable<SKU>> GetBatchByOptionIdsAsync(IEnumerable<Guid> optionIds);
     }
 }
