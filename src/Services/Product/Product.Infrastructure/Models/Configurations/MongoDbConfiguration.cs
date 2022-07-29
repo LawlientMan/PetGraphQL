@@ -1,4 +1,4 @@
-﻿namespace Product.Infrastructure.Configurations
+﻿namespace Product.Infrastructure.Models.Configurations
 {
     public class MongoDbConfiguration
     {

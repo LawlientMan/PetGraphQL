@@ -1,5 +1,6 @@
-﻿using MongoDB.Driver;
-using Product.Infrastructure.Configurations;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using Product.Infrastructure.Models.Configurations;
 
 namespace Product.Infrastructure.Data
 {
@@ -7,10 +8,10 @@ namespace Product.Infrastructure.Data
     {
         private readonly IMongoDatabase _database;
 
-        public ProductContext(MongoDbConfiguration mongoDbConfiguration)
+        public ProductContext(IOptions<MongoDbConfiguration> mongoDbConfiguration)
         {
-            var client = new MongoClient(mongoDbConfiguration.ConnectionString);
-            _database = client.GetDatabase(mongoDbConfiguration.Database);
+            var client = new MongoClient(mongoDbConfiguration.Value.ConnectionString);
+            _database = client.GetDatabase(mongoDbConfiguration.Value.Database);
             ProductContextSeed.SeedData(_database);
         }
 
