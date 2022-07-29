@@ -1,7 +1,6 @@
 ﻿using Product.Domain.Entities;
-using System.Threading.Tasks;
 
-namespace Product.Application.Repositories
+namespace Product.Application.Contracts.Persistence
 {
     public interface IStyleRepository : IBaseRepository<Style>
     {

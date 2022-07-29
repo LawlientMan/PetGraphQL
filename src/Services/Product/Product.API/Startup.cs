@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +9,7 @@ using Product.API.Resolvers;
 using Product.API.Types;
 using Product.Application;
 using Product.Infrastructure;
+using System.Reflection;
 
 namespace Product.API
 {
@@ -27,15 +29,15 @@ namespace Product.API
             services.AddApplicationServices(Configuration);
             services.AddInfrastructureServices(Configuration);
 
-            services.AddGraphQLServer()
+            services
+                .AddScoped<StyleQuery>()
+                .AddGraphQLServer()
                 .AddType<StyleType>()
                 .AddType<OptionType>()
                 .AddResolver<SkuResolver>()
                 .AddQueryType(q => q.Name("Query"))
                     .AddType<StyleQueryType>()
                 .AddInMemorySubscriptions();
-
-            services.AddHealthChecks();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

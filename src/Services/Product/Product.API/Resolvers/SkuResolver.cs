@@ -1,6 +1,6 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
-using Product.Application.Repositories;
+using Product.Application.Contracts.Persistence;
 using Product.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;

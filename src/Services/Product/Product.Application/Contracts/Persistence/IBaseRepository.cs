@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Product.Application.Repositories
+namespace Product.Application.Contracts.Persistence
 {
     public interface IBaseRepository<T> where T : Entity
     {

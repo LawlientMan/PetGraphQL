@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using Product.Application.Repositories;
+using Product.Application.Contracts.Persistence;
 using Product.Domain.Entities;
 using Product.Infrastructure.Data;
 using System;

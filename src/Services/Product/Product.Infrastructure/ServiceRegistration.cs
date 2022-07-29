@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Product.Application.Repositories;
+using Product.Application.Contracts.Persistence;
 using Product.Infrastructure.Data;
 using Product.Infrastructure.Models.Configurations;
 using Product.Infrastructure.Repositories;
