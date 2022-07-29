@@ -7,7 +7,7 @@ using Product.Infrastructure.Repositories;
 
 namespace Product.Infrastructure
 {
-    public static class InfrastructureServiceRegistration
+    public static class ServiceRegistration
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {

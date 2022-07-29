@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Product.Application;
 using Product.Infrastructure;
 
 namespace Product.API
@@ -20,8 +21,9 @@ namespace Product.API
         {
             services.AddOptions();
 
-            //services.AddApplicationServices();
+            services.AddApplicationServices(Configuration);
             services.AddInfrastructureServices(Configuration);
+
             services.AddGraphQLServer().AddQueryType<Query>();
             services.AddHealthChecks();
         }
