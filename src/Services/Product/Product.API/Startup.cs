@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Product.API.Resolvers;
+using Product.API.Types;
 using Product.Application;
 using Product.Infrastructure;
 
@@ -24,7 +26,12 @@ namespace Product.API
             services.AddApplicationServices(Configuration);
             services.AddInfrastructureServices(Configuration);
 
-            services.AddGraphQLServer().AddQueryType<Query>();
+            services.AddGraphQLServer()
+                .AddQueryType<Query>()
+                .AddType<StyleType>()
+                .AddType<OptionType>()
+                .AddType<SkuResolver>();
+
             services.AddHealthChecks();
         }
 
