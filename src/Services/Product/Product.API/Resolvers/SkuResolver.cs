@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Product.API.Resolvers
 {
-    [ExtendObjectType(Name = "Skus")]
+    [ExtendObjectType("Skus")]
     public class SkuResolver
     {
         public Task<IEnumerable<SKU>> GetSkusAsync([Parent] Option option, [Service] ISkuRepository skuRepository) =>
