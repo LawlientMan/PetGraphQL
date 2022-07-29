@@ -11,7 +11,7 @@ namespace Product.Infrastructure.Data
         {
             var client = new MongoClient(mongoDbConfiguration.ConnectionString);
             _database = client.GetDatabase(mongoDbConfiguration.Database);
-            //CatalogContextSeed.SeedData(this.database);
+            ProductContextSeed.SeedData(_database);
         }
 
         public IMongoCollection<T> GetCollection<T>(string name)

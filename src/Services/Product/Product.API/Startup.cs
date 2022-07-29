@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Product.API.Configurations;
+using Product.Infrastructure;
 
 namespace Product.API
 {
@@ -21,7 +22,10 @@ namespace Product.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            //services.AddApplicationServices();
+            services.AddInfrastructureServices(_apiConfiguration.MongoDbConfiguration);
+            services.AddGraphQLServer().AddQueryType<Query>();
+            services.AddHealthChecks();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,11 +37,9 @@ namespace Product.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapGraphQL("/api/graphql");
             });
         }
     }
