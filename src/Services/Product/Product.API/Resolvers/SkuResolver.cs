@@ -1,7 +1,6 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
-using MediatR;
-using Product.Application.Features.Skus.Queries;
+using Product.API.Loaders;
 using Product.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading;
@@ -12,7 +11,7 @@ namespace Product.API.Resolvers
     [ExtendObjectType("Skus")]
     public class SkuResolver
     {
-        public Task<IEnumerable<SKU>> GetSkusAsync([Parent] Option option, [Service] IMediator mediator, CancellationToken cancellationToken) =>
-            mediator.Send(new GetSkusListByOptionId(option.Id), cancellationToken);
+        public async Task<IEnumerable<SKU>> GetSkusAsync([Parent] Option option, [Service] SkuBatchDataLoader skuDataLoader, CancellationToken cancellationToken) =>
+            await skuDataLoader.LoadAsync(option.Id);
     }
 }

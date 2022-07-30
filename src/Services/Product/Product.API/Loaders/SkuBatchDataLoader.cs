@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Product.API.Loaders
 {
-    public class SkuBatchDataLoader : BatchDataLoader<Guid, SKU>
+    public class SkuBatchDataLoader : BatchDataLoader<Guid, IEnumerable<SKU>>
     {
         private readonly IMediator mediator;
 
@@ -20,11 +20,11 @@ namespace Product.API.Loaders
             this.mediator = mediator;
         }
 
-        protected override async Task<IReadOnlyDictionary<Guid, SKU>> LoadBatchAsync(IReadOnlyList<Guid> keys, CancellationToken cancellationToken)
+        protected override async Task<IReadOnlyDictionary<Guid, IEnumerable<SKU>>> LoadBatchAsync(IReadOnlyList<Guid> keys, CancellationToken cancellationToken)
         {
             IEnumerable<SKU> skus = await mediator.Send(new GetSkuBatchByOptionIdsAsync(keys));
 
-            return skus.ToDictionary(x => x.OptionId);
+            return skus.GroupBy(x => x.OptionId).ToDictionary(i => i.Key, i => (IEnumerable<SKU>)i.ToList());
         }
     }
 }
