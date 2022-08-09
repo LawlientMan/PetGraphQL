@@ -8,7 +8,7 @@ namespace Product.Infrastructure.Data
     {
         private readonly IMongoDatabase _database;
 
-        public ProductContext(IOptions<MongoDbConfiguration> mongoDbConfiguration)
+        public ProductContext(IOptions<MongoDbOptions> mongoDbConfiguration)
         {
             var client = new MongoClient(mongoDbConfiguration.Value.ConnectionString);
             _database = client.GetDatabase(mongoDbConfiguration.Value.Database);

@@ -26,7 +26,7 @@ namespace Product.API
             services.AddOptions();
 
             services.AddApplicationServices(Configuration);
-            services.AddInfrastructureServices(Configuration);
+            services.AddInfrastructureServices(options => Configuration.GetSection("MongoDbConfiguration").Bind(options));
 
             services
                 .AddScoped<StyleQuery>()
